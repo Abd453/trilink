@@ -12,6 +12,7 @@ import 'student_profile.dart';
 import 'student_settings.dart';
 import 'student_notifications.dart';
 import 'student_exam_scores.dart';
+import 'student_ai_assistant.dart';
 
 class StudentShell extends StatefulWidget {
   const StudentShell({super.key});
@@ -25,16 +26,16 @@ class _StudentShellState extends State<StudentShell> {
   final _pages = const [
     StudentDashboard(),
     StudentGrades(),
+    StudentAIAssistant(),
     StudentChat(),
-    StudentGame(),
     StudentProfilePage(),
   ];
 
   final _drawerPages = <String, Widget>{
     'Dashboard': const StudentDashboard(),
     'Announcements': const StudentAnnouncements(),
-    'Notifications': const StudentNotifications(),
     'Grades': const StudentGrades(),
+    'AI Assistant': const StudentAIAssistant(),
     'Attendance': const StudentAttendance(),
     'Chat': const StudentChat(),
     'Feedback': const StudentFeedback(),
@@ -48,8 +49,8 @@ class _StudentShellState extends State<StudentShell> {
   final _drawerIcons = {
     'Dashboard': Icons.dashboard_rounded,
     'Announcements': Icons.campaign_rounded,
-    'Notifications': Icons.notifications_rounded,
     'Grades': Icons.grading_rounded,
+    'AI Assistant': Icons.auto_awesome_rounded,
     'Attendance': Icons.fact_check_rounded,
     'Chat': Icons.chat_rounded,
     'Feedback': Icons.rate_review_rounded,
@@ -138,8 +139,8 @@ class _StudentShellState extends State<StudentShell> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.dashboard_rounded), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.grading_rounded), label: 'Grades'),
+          BottomNavigationBarItem(icon: Icon(Icons.auto_awesome_rounded), label: 'AI'),
           BottomNavigationBarItem(icon: Icon(Icons.chat_rounded), label: 'Chat'),
-          BottomNavigationBarItem(icon: Icon(Icons.sports_esports_rounded), label: 'Games'),
           BottomNavigationBarItem(icon: Icon(Icons.person_rounded), label: 'Profile'),
         ],
       ),

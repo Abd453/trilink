@@ -12,7 +12,7 @@ class StudentDashboard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Welcome
-          Text('Good morning, Abebe! ☀️', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
+          Row(children: [Icon(Icons.wb_sunny_rounded, color: AppColors.warning, size: 22), SizedBox(width: 8), Text('Good morning, Abebe!', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800))]),
           SizedBox(height: 4),
           Text('Here\'s your academic overview', style: TextStyle(color: AppColors.textSecondary, fontSize: 14)),
           SizedBox(height: 20),

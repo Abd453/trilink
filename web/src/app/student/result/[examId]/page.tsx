@@ -16,15 +16,9 @@ interface Question {
 export default function ExamResult({ params }: { params: Promise<{ examId: string }> }) {
     const router = useRouter();
 
-    // Mock result data
     const result = {
         exam: { course: "English", type: "Quiz", title: "Grammar & Vocabulary Quiz", date: "Feb 19, 2026", duration: "20 min", totalQuestions: 10 },
-        score: 88,
-        correct: 8,
-        wrong: 1,
-        unanswered: 1,
-        timeTaken: "14:32",
-        tabViolations: 0,
+        score: 88, correct: 8, wrong: 1, unanswered: 1, timeTaken: "14:32", tabViolations: 0,
         questions: [
             { id: 1, order: 1, type: "mcq" as QuestionType, text: "Which of the following is a conjunction?", options: ["Run", "But", "Quickly", "Chair"], correctAnswer: "But", studentAnswer: "But" },
             { id: 2, order: 2, type: "truefalse" as QuestionType, text: "'Their' is a possessive pronoun.", correctAnswer: "True", studentAnswer: "True" },
@@ -46,7 +40,6 @@ export default function ExamResult({ params }: { params: Promise<{ examId: strin
         if (score >= 60) return { letter: "D", color: "#f97316" };
         return { letter: "F", color: "var(--danger)" };
     };
-
     const grade = getGrade(result.score);
 
     return (
@@ -57,19 +50,15 @@ export default function ExamResult({ params }: { params: Promise<{ examId: strin
                     display: "flex", alignItems: "center", gap: "0.4rem",
                     background: "none", border: "none", color: "var(--primary-500)",
                     fontWeight: 600, fontSize: "0.85rem", cursor: "pointer", marginBottom: "1rem",
-                }}>← Back to Exam Portal</button>
-                <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--gray-900)" }}>📊 Exam Result</h1>
+                }}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg> Back to Exam Portal</button>
+                <h1 style={{ fontSize: "1.5rem", fontWeight: 800, color: "var(--gray-900)", display: "flex", alignItems: "center", gap: "0.5rem" }}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary-500)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 20V10" /><path d="M12 20V4" /><path d="M6 20v-6" /></svg> Exam Result</h1>
                 <p style={{ fontSize: "0.875rem", color: "var(--gray-500)", marginTop: "0.25rem" }}>{result.exam.title}</p>
             </div>
 
-            {/* Score Overview Card */}
-            <div style={{
-                background: "linear-gradient(135deg, #fff 0%, var(--gray-50) 100%)",
-                borderRadius: 20, padding: "2rem", border: "1px solid var(--gray-100)",
-                marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "2rem",
-            }}>
+            {/* Score Overview — responsive */}
+            <div className="result-overview">
                 {/* Score Circle */}
-                <div style={{ position: "relative", width: 120, height: 120 }}>
+                <div style={{ position: "relative", width: 120, height: 120, flexShrink: 0 }}>
                     <svg width="120" height="120" viewBox="0 0 120 120">
                         <circle cx="60" cy="60" r="52" fill="none" stroke="var(--gray-100)" strokeWidth="8" />
                         <circle cx="60" cy="60" r="52" fill="none" stroke={grade.color} strokeWidth="8"
@@ -82,9 +71,9 @@ export default function ExamResult({ params }: { params: Promise<{ examId: strin
                     </div>
                 </div>
 
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
                     <h2 style={{ fontSize: "1.15rem", fontWeight: 700, marginBottom: "0.75rem" }}>{result.exam.course} — {result.exam.type}</h2>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "0.75rem" }}>
+                    <div className="result-stats-grid">
                         <div style={{ background: "var(--success-light)", borderRadius: 12, padding: "0.75rem 1rem" }}>
                             <div style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--success)" }}>{result.correct}</div>
                             <div style={{ fontSize: "0.75rem", color: "#065f46" }}>Correct</div>
@@ -116,14 +105,9 @@ export default function ExamResult({ params }: { params: Promise<{ examId: strin
                             background: "#fff", borderRadius: 16, padding: "1.25rem",
                             border: `1.5px solid ${isCorrect ? "var(--success)" : isUnanswered ? "var(--gray-200)" : "var(--danger)"}`,
                         }}>
-                            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.5rem" }}>
+                            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.5rem", flexWrap: "wrap", gap: "0.5rem" }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                                    <span style={{
-                                        width: 28, height: 28, borderRadius: 8,
-                                        background: isCorrect ? "var(--success)" : isUnanswered ? "var(--gray-400)" : "var(--danger)",
-                                        color: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-                                        fontWeight: 700, fontSize: "0.75rem"
-                                    }}>{q.order}</span>
+                                    <span style={{ width: 28, height: 28, borderRadius: 8, background: isCorrect ? "var(--success)" : isUnanswered ? "var(--gray-400)" : "var(--danger)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "0.75rem" }}>{q.order}</span>
                                     <span style={{
                                         padding: "0.2rem 0.5rem", borderRadius: 6, fontSize: "0.7rem", fontWeight: 600,
                                         background: q.type === "mcq" ? "var(--primary-50)" : q.type === "truefalse" ? "var(--purple-light)" : "var(--warning-light)",
@@ -132,15 +116,12 @@ export default function ExamResult({ params }: { params: Promise<{ examId: strin
                                         {q.type === "mcq" ? "MCQ" : q.type === "truefalse" ? "T/F" : "Fill"}
                                     </span>
                                 </div>
-                                <span style={{
-                                    fontSize: "0.8rem", fontWeight: 700,
-                                    color: isCorrect ? "var(--success)" : isUnanswered ? "var(--gray-500)" : "var(--danger)"
-                                }}>
-                                    {isCorrect ? "✓ Correct" : isUnanswered ? "— Skipped" : "✗ Wrong"}
+                                <span style={{ fontSize: "0.8rem", fontWeight: 700, color: isCorrect ? "var(--success)" : isUnanswered ? "var(--gray-500)" : "var(--danger)", display: "flex", alignItems: "center", gap: "0.3rem" }}>
+                                    {isCorrect ? <><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg> Correct</> : isUnanswered ? <><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /></svg> Skipped</> : <><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg> Wrong</>}
                                 </span>
                             </div>
                             <p style={{ fontSize: "0.9rem", fontWeight: 500, marginBottom: "0.75rem", lineHeight: 1.5 }}>{q.text}</p>
-                            <div style={{ display: "flex", gap: "1rem", fontSize: "0.85rem" }}>
+                            <div className="result-answer-row">
                                 <div style={{ flex: 1 }}>
                                     <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "var(--gray-400)", marginBottom: "0.25rem", textTransform: "uppercase" }}>Your Answer</div>
                                     <div style={{
@@ -153,10 +134,7 @@ export default function ExamResult({ params }: { params: Promise<{ examId: strin
                                 {!isCorrect && (
                                     <div style={{ flex: 1 }}>
                                         <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "var(--gray-400)", marginBottom: "0.25rem", textTransform: "uppercase" }}>Correct Answer</div>
-                                        <div style={{
-                                            padding: "0.5rem 0.75rem", borderRadius: 8,
-                                            background: "var(--success-light)", fontWeight: 600, color: "#065f46",
-                                        }}>{q.correctAnswer}</div>
+                                        <div style={{ padding: "0.5rem 0.75rem", borderRadius: 8, background: "var(--success-light)", fontWeight: 600, color: "#065f46" }}>{q.correctAnswer}</div>
                                     </div>
                                 )}
                             </div>

@@ -92,7 +92,7 @@ class _StudentFeedbackState extends State<StudentFeedback> {
               child: ElevatedButton(
                 onPressed: _rating > 0 ? () {
                   setState(() { _submitted.add(_selectedSubject!); _selectedSubject = null; });
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Feedback submitted anonymously ✓'), backgroundColor: AppColors.success));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Feedback submitted anonymously'), backgroundColor: AppColors.success));
                 } : null,
                 child: Text('Submit Feedback'),
               ),

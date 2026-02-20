@@ -5,8 +5,6 @@ import 'providers/auth_provider.dart';
 import 'screens/role_selection_screen.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/student/student_shell.dart';
-import 'screens/teacher/teacher_shell.dart';
-import 'screens/admin/admin_shell.dart';
 import 'screens/parent/parent_shell.dart';
 
 void main() {
@@ -34,12 +32,8 @@ class TriLinkaApp extends StatelessWidget {
       routes: {
         '/role-selection': (context) => const RoleSelectionScreen(),
         '/login/student': (context) => const LoginScreen(role: 'Student'),
-        '/login/teacher': (context) => const LoginScreen(role: 'Teacher'),
-        '/login/admin': (context) => const LoginScreen(role: 'Admin'),
         '/login/parent': (context) => const LoginScreen(role: 'Parent'),
         '/student': (context) => const StudentShell(),
-        '/teacher': (context) => const TeacherShell(),
-        '/admin': (context) => const AdminShell(),
         '/parent': (context) => const ParentShell(),
       },
     );

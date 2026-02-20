@@ -76,7 +76,7 @@ class StudentExamScores extends StatelessWidget {
             Row(children: [
               Text('${e['correct']}/${e['total']} correct', style: TextStyle(fontSize: 12, color: AppColors.textSecondary)),
               SizedBox(width: 16),
-              Text('⏱ ${e['time']}', style: TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+              Row(children: [Icon(Icons.timer_outlined, size: 14, color: AppColors.textSecondary), SizedBox(width: 3), Text('${e['time']}', style: TextStyle(fontSize: 12, color: AppColors.textSecondary))]),
             ]),
           ]));
       }),

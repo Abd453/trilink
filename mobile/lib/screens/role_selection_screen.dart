@@ -114,22 +114,6 @@ class RoleSelectionScreen extends StatelessWidget {
                                 onTap: () => Navigator.pushNamed(context, '/login/student'),
                               ),
                               _RoleCard(
-                                icon: Icons.menu_book_rounded,
-                                label: 'Teacher',
-                                subtitle: 'Manage classes',
-                                color: AppColors.success,
-                                bgColor: AppColors.successLight,
-                                onTap: () => Navigator.pushNamed(context, '/login/teacher'),
-                              ),
-                              _RoleCard(
-                                icon: Icons.admin_panel_settings_rounded,
-                                label: 'Admin',
-                                subtitle: 'System control',
-                                color: AppColors.purple,
-                                bgColor: AppColors.purpleLight,
-                                onTap: () => Navigator.pushNamed(context, '/login/admin'),
-                              ),
-                              _RoleCard(
                                 icon: Icons.family_restroom_rounded,
                                 label: 'Parent',
                                 subtitle: 'Track progress',

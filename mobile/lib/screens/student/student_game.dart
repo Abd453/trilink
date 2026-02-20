@@ -22,9 +22,9 @@ class _StudentGameState extends State<StudentGame> with SingleTickerProviderStat
         width: double.infinity, padding: EdgeInsets.all(20), margin: EdgeInsets.all(16),
         decoration: BoxDecoration(gradient: LinearGradient(colors: [AppColors.primary600, AppColors.primary800]), borderRadius: BorderRadius.circular(20)),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          Column(children: [Text('🏆', style: TextStyle(fontSize: 28)), SizedBox(height: 4), Text('1,250', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: Colors.white)), Text('Points', style: TextStyle(fontSize: 12, color: Colors.white70))]),
+          Column(children: [Icon(Icons.emoji_events_rounded, color: Colors.amber, size: 28), SizedBox(height: 4), Text('1,250', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: Colors.white)), Text('Points', style: TextStyle(fontSize: 12, color: Colors.white70))]),
           Container(width: 1, height: 50, color: Colors.white24),
-          Column(children: [Text('🔥', style: TextStyle(fontSize: 28)), SizedBox(height: 4), Text('7 Days', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: Colors.white)), Text('Streak', style: TextStyle(fontSize: 12, color: Colors.white70))]),
+          Column(children: [Icon(Icons.local_fire_department_rounded, color: Colors.orange, size: 28), SizedBox(height: 4), Text('7 Days', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: Colors.white)), Text('Streak', style: TextStyle(fontSize: 12, color: Colors.white70))]),
         ]),
       ),
       Container(color: Colors.white, child: TabBar(controller: _tabController, labelColor: AppColors.primary500, unselectedLabelColor: AppColors.gray400, indicatorColor: AppColors.primary500, tabs: [Tab(text: 'Leaderboard'), Tab(text: 'Quizzes'), Tab(text: 'Badges')])),
@@ -61,11 +61,11 @@ class _StudentGameState extends State<StudentGame> with SingleTickerProviderStat
   }
 
   Widget _badges() {
-    final badges = [{'n': 'First Quiz', 'i': '🎯', 'e': true}, {'n': '7-Day Streak', 'i': '🔥', 'e': true}, {'n': 'Perfect Score', 'i': '💯', 'e': true}, {'n': 'Quiz Master', 'i': '🧠', 'e': false}, {'n': 'Top 3', 'i': '🥇', 'e': false}];
+    final badges = [{'n': 'First Quiz', 'i': Icons.gps_fixed_rounded, 'e': true}, {'n': '7-Day Streak', 'i': Icons.local_fire_department_rounded, 'e': true}, {'n': 'Perfect Score', 'i': Icons.star_rounded, 'e': true}, {'n': 'Quiz Master', 'i': Icons.psychology_rounded, 'e': false}, {'n': 'Top 3', 'i': Icons.military_tech_rounded, 'e': false}];
     return GridView.builder(padding: EdgeInsets.all(16), gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 12, crossAxisSpacing: 12), itemCount: badges.length, itemBuilder: (_, i) {
       final b = badges[i]; final earned = b['e'] as bool;
       return Container(decoration: BoxDecoration(color: earned ? Colors.white : AppColors.gray50, borderRadius: BorderRadius.circular(14), border: Border.all(color: earned ? AppColors.primary200 : AppColors.gray200)),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [Text(b['i'] as String, style: TextStyle(fontSize: 28)), SizedBox(height: 6), Text(b['n'] as String, style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: earned ? AppColors.textPrimary : AppColors.gray400), textAlign: TextAlign.center)]));
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [Icon(b['i'] as IconData, size: 28, color: earned ? AppColors.primary500 : AppColors.gray300), SizedBox(height: 6), Text(b['n'] as String, style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: earned ? AppColors.textPrimary : AppColors.gray400), textAlign: TextAlign.center)]));
     });
   }
 }

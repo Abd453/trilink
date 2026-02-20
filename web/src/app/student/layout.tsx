@@ -14,22 +14,11 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
         return <>{children}</>;
     }
 
-    // Dashboard (exam list) - minimal header only
+    // Dashboard (exam list) + result pages - minimal header
     return (
         <div style={{ minHeight: "100vh", background: "var(--gray-50)" }}>
-            <header style={{
-                background: "#fff",
-                borderBottom: "1px solid var(--gray-100)",
-                padding: "0 2rem",
-                height: "64px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                position: "sticky",
-                top: 0,
-                zIndex: 100
-            }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <header className="student-header">
+                <div className="student-header-brand">
                     <div style={{
                         width: 36, height: 36,
                         background: "linear-gradient(135deg, var(--primary-500), var(--primary-700))",
@@ -41,15 +30,15 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
                         TriLink <span style={{ fontWeight: 400, color: "var(--gray-400)" }}>|</span> <span style={{ fontWeight: 500, color: "var(--primary-600)", fontSize: "0.9rem" }}>Exam Portal</span>
                     </span>
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <div className="student-header-user">
+                    <div className="student-header-user-info">
                         <div style={{
                             width: 34, height: 34, borderRadius: "10px",
                             background: "var(--primary-50)", display: "flex",
                             alignItems: "center", justifyContent: "center",
                             fontSize: "0.75rem", fontWeight: 700, color: "var(--primary-600)"
                         }}>AK</div>
-                        <div>
+                        <div className="student-header-user-details">
                             <div style={{ fontSize: "0.85rem", fontWeight: 600 }}>Abebe Kebede</div>
                             <div style={{ fontSize: "0.7rem", color: "var(--gray-400)" }}>Grade 11-A</div>
                         </div>
@@ -62,7 +51,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
                     }}>Logout</a>
                 </div>
             </header>
-            <main style={{ maxWidth: 960, margin: "0 auto", padding: "2rem 1.5rem" }}>
+            <main className="student-main">
                 {children}
             </main>
         </div>
